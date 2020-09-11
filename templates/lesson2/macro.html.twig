@@ -1,0 +1,7 @@
+{% macro month_selector(name, value) %}
+    <select name="{{ name }}">
+        {% for month in 1..12 %}
+            <option value="{{ month }}" {{ value == month ? 'selected=\"selected\"': '' }}>{{ month }}</option>
+        {% endfor %}
+    </select>
+{% endmacro %}

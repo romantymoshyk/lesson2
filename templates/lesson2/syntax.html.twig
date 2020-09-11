@@ -1,0 +1,25 @@
+{% extends 'base' ~ '.html.twig' %}
+
+{% block title %}Hello world!{% endblock %}
+{% block stylesheets %}
+    {# php bin/composer.phar require symfony/asset #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" />
+{% endblock %}
+
+{% block body %}
+    {% set topics = {'a': '1', 'b': 2, 'c': {'a': 1}} %}
+    {% for topic, messages in topics %}
+        {{ loop.index }}. {{ topic }}
+        {% for message in messages %}
+            {{ loop.parent.loop.index }}.{{ loop.index }}. {{ message }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% macro month_selector(name, value) %}
+    <select name="{{ name }}">
+        {% for month in 1..12 %}
+            <option value="{{ month }}" {{ value == month ? 'selected=\"selected\"': '' }}>{{ month }}</option>
+        {% endfor %}
+    </select>
+{% endmacro %}
